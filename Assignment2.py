@@ -43,7 +43,9 @@ def cumulative_sum(arr):
 # Function 4: Two-Dimensional Arrays - Matrix Transpose
 # This function takes a 2D list (matrix) and returns its transpose.
 def transpose_matrix(matrix):
-    return [[]]
+    transposed_list = [[matrix[i][j] for i in range(len(matrix))] for j in range(len(matrix[0]))]
+
+    return transposed_list
 
 # print(transpose_matrix([[1, 2, 3], [4, 5, 6]]))
 
@@ -68,9 +70,15 @@ def dot_product(list1, list2):
 
     return result
 
-print(dot_product([2, 3, 4], [5, 6, 7]))
+# print(dot_product([2, 3, 4], [5, 6, 7]))
 
 # Function 7: Arithmetic Operations with Arrays - Matrix Multiplication
 # This function takes two 2D lists (matrices) and returns their matrix product.
 def matrix_multiplication(matrix1, matrix2):
-    return [[0, 0], [0, 0]]
+    transposed_matrix2 = list(zip(* matrix2)) # Considers rows of a matrix as different list within a matrix.
+
+    result = [[sum(a * b for a, b in zip(row, column)) for column in transposed_matrix2] for row in matrix1]
+
+    return result
+
+# print(matrix_multiplication([[1, 2], [3, 4]], [[5, 6], [7, 8]]))
